@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matsuki | Authentic Japanese Cuisine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+@font-face{
+    font-family:'Sukajan Brush Demo';
+    src:url('fonts/SukajanBrushDemo.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+:root{
+--black:#000000;
+--washi:#F9F6F0;
+--red:#7E0315;
+--gold:#C5A880;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#000;
+font-family:'Inter',sans-serif;
+color:var(--washi);
+overflow-x:hidden;
+}
+
+/* Animated Background */
+
+.hero{
+height:100vh;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:
+linear-gradient(
+135deg,
+#000000,
+#120406,
+#000000
+);
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:900px;
+height:900px;
+background:radial-gradient(
+circle,
+rgba(126,3,21,.25),
+transparent 70%
+);
+animation:float1 10s ease-in-out infinite;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(
+circle,
+rgba(197,168,128,.08),
+transparent 70%
+);
+right:-150px;
+bottom:-150px;
+animation:float2 12s ease-in-out infinite;
+}
+
+@keyframes float1{
+50%{
+transform:translateY(-40px);
+}
+}
+
+@keyframes float2{
+50%{
+transform:translateY(40px);
+}
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.3),
+rgba(0,0,0,.75)
+);
+backdrop-filter:blur(3px);
+}
+
+/* Navigation */
+
+nav{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:1300px;
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+
+background:rgba(18,18,18,.35);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+
+box-shadow:
+0 10px 40px rgba(0,0,0,.35);
+transition:.35s;
+}
+/* Hamburger */
+
+.hamburger{
+    display:none;
+    width:32px;
+    cursor:pointer;
+    z-index:1100;
+}
+
+.hamburger span{
+    display:block;
+    height:3px;
+    margin:6px 0;
+    background:white;
+    border-radius:10px;
+    transition:.35s;
+}
+
+/* Animation */
+
+.hamburger.active span:nth-child(1){
+    transform:translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+    transform:translateY(-9px) rotate(-45deg);
+}
+
+@media(max-width:768px){
+
+.hamburger{
+    display:block;
+}
+
+.nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:260px;
+    height:100vh;
+
+    background:rgba(15,15,15,.97);
+    backdrop-filter:blur(20px);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+
+    transition:.4s ease;
+}
+
+.nav-links.active{
+    right:0;
+}
+
+.nav-links a{
+    font-size:1.1rem;
+}
+
+}
+.logo{
+font-family:'Sukajan Brush Demo',cursive;
+font-size:2.2rem;
+letter-spacing:2px;
+color:white;
+text-shadow:0 0 15px rgba(197,168,128,.35);
+}
+
+
+.nav-links a{
+color:var(--washi);
+text-decoration:none;
+font-size:.9rem;
+letter-spacing:1px;
+transition:.35s;
+padding:10px 18px;
+border-radius:12px;
+}
+
+.nav-links a:hover{
+background:rgba(255,255,255,.08);
+color:var(--gold);
+}
+
+.nav-links a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-8px;
+width:0;
+height:1px;
+background:var(--gold);
+transition:.4s;
+}
+
+.nav-links a:hover{
+color:var(--gold);
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+/* Hero Content */
+
+.content{
+position:relative;
+z-index:5;
+text-align:center;
+max-width:900px;
+padding:0 20px;
+}
+
+.subtitle{
+color:var(--gold);
+letter-spacing:8px;
+font-size:.8rem;
+margin-bottom:25px;
+display:block;
+}
+
+h1{
+font-family:'Sukajan Brush Demo', cursive;
+font-size:clamp(6rem,10vw,9rem);
+font-weight:normal;
+line-height:1;
+letter-spacing:2px;
+color:var(--washi);
+margin-bottom:10px;
+text-shadow:0 10px 30px rgba(0,0,0,.45);
+}
+.hero-tagline{
+font-size:1.4rem;
+letter-spacing:3px;
+color:var(--gold);
+margin-bottom:30px;
+}
+.description{
+max-width:700px;
+margin:auto;
+font-size:1.1rem;
+line-height:2;
+opacity:.85;
+}
+
+/* Buttons */
+
+.buttons{
+margin-top:50px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn-primary{
+padding:18px 40px;
+background:rgba(197,168,128,.15);
+border:1px solid rgba(197,168,128,.4);
+backdrop-filter:blur(10px);
+color:var(--washi);
+text-decoration:none;
+letter-spacing:2px;
+transition:.4s;
+border-radius:999px;
+}
+
+.btn-primary:hover{
+background:var(--gold);
+color:#000;
+transform:translateY(-4px);
+}
+
+.btn-secondary{
+padding:18px 40px;
+border:1px solid rgba(255,255,255,.15);
+color:white;
+text-decoration:none;
+letter-spacing:2px;
+transition:.4s;
+border-radius:999px;
+}
+
+.btn-secondary:hover{
+border-color:var(--gold);
+color:var(--gold);
+transform:translateY(-4px);
+}
+
+/* Floating Elements */
+
+.circle{
+position:absolute;
+border:1px solid rgba(197,168,128,.12);
+border-radius:50%;
+}
+
+.circle1{
+width:450px;
+height:450px;
+left:-150px;
+top:120px;
+animation:spin 25s linear infinite;
+}
+
+.circle2{
+width:700px;
+height:700px;
+right:-250px;
+bottom:-200px;
+animation:spinReverse 35s linear infinite;
+}
+
+@keyframes spin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+@keyframes spinReverse{
+from{
+transform:rotate(360deg);
+}
+to{
+transform:rotate(0deg);
+}
+}
+
+/* Scroll Indicator */
+
+.scroll{
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+letter-spacing:4px;
+font-size:.8rem;
+color:var(--gold);
+z-index:5;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+50%{
+transform:translateX(-50%) translateY(-10px);
+}
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.nav-links{
+display:none;
+}
+
+h1{
+font-size:4rem;
+}
+
+.description{
+font-size:1rem;
+line-height:1.8;
+}
+
+}
+/* ================= MENU ================= */
+
+.menu-section{
+
+    padding:140px 8%;
+    background:#000;
+    text-align:center;
+
+}
+
+.menu-header{
+
+    max-width:850px;
+    margin:auto;
+
+}
+
+.menu-subtitle{
+
+    display:inline-block;
+    color:var(--gold);
+    letter-spacing:6px;
+    font-size:.85rem;
+    margin-bottom:25px;
+
+}
+
+.menu-header h2{
+
+    font-family:'Sukajan Brush Demo', cursive;
+    font-size:clamp(3rem,6vw,5rem);
+    font-weight:500;
+    line-height:1.1;
+    color:var(--washi);
+    margin-bottom:25px;
+
+}
+
+.menu-header p{
+
+    max-width:700px;
+    margin:auto;
+    color:rgba(249,246,240,.75);
+    line-height:2;
+    font-size:1.05rem;
+
+}/*================ MENU CARDS ================*/
+
+.menu-grid{
+
+    margin-top:90px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+    gap:35px;
+
+}
+
+.menu-card{
+
+    background:linear-gradient(
+    145deg,
+    #180405,
+    #32080d
+    );
+
+    border:1px solid rgba(197,168,128,.18);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    transition:.5s;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.menu-card:hover{
+
+    transform:
+    translateY(-12px)
+    scale(1.02);
+
+    border-color:var(--gold);
+
+    box-shadow:
+    0 35px 90px rgba(126,3,21,.45);
+
+}
+
+.menu-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    transition:.6s;
+
+}
+
+.menu-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.card-content{
+
+    padding:30px;
+
+}
+
+.card-content h3{
+
+    font-family:'Sukajan Brush Demo', cursive;
+
+    font-size:2.3rem;
+
+    font-weight:normal;
+
+    color:var(--gold);
+
+    margin-bottom:18px;
+
+    letter-spacing:1px;
+
+}
+
+
+.card-content p{
+
+    color:rgba(249,246,240,.78);
+
+    line-height:1.9;
+
+    font-size:1rem;
+
+}/*================ ABOUT ================*/
+
+.about{
+
+    padding:150px 8%;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+
+    background:#000;
+
+}
+
+.about-image{
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    border:1px solid rgba(197,168,128,.18);
+
+    box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+}
+
+.about-image img{
+
+    width:100%;
+
+    height:650px;
+
+    object-fit:cover;
+
+    transition:.7s;
+
+}
+
+.about-image:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.about-subtitle{
+
+    color:var(--gold);
+
+    letter-spacing:6px;
+
+    font-size:.85rem;
+
+}
+
+.about-content h2{
+
+    font-family:'Sukajan Brush Demo', cursive;
+
+    font-size:4rem;
+
+    margin:20px 0;
+
+    line-height:1.1;
+
+}
+
+.about-content p{
+
+    color:rgba(249,246,240,.78);
+
+    line-height:2;
+
+    margin-bottom:25px;
+
+    font-size:1.05rem;
+
+}
+
+.about-btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:18px 40px;
+
+    border-radius:999px;
+
+    border:1px solid var(--gold);
+
+    color:var(--washi);
+
+    text-decoration:none;
+
+    transition:.4s;
+
+}
+
+.about-btn:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+@media(max-width:900px){
+
+.about{
+
+grid-template-columns:1fr;
+
+}
+
+.about-image img{
+
+height:450px;
+
+}
+
+.about-content{
+
+text-align:center;
+
+}
+
+}/*================ REVIEWS ================*/
+
+.reviews{
+
+    padding:150px 8%;
+
+    background:#000;
+
+}
+
+.review-header{
+
+    text-align:center;
+
+    max-width:750px;
+
+    margin:auto;
+
+    margin-bottom:80px;
+
+}
+
+.review-header span{
+
+    color:var(--gold);
+
+    letter-spacing:6px;
+
+    font-size:.85rem;
+
+}
+
+.review-header h2{
+
+    font-family:'Sukajan Brush Demo', cursive;
+
+    font-size:4rem;
+
+    margin:20px 0;
+
+}
+
+.review-header p{
+
+    color:rgba(249,246,240,.75);
+
+    line-height:2;
+
+}
+
+.review-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+
+}
+
+.review-card{
+
+    background:linear-gradient(
+    145deg,
+    #180405,
+    #32080d
+    );
+
+    border-radius:28px;
+
+    padding:40px;
+
+    border:1px solid rgba(197,168,128,.15);
+
+    transition:.45s;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+.review-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--gold);
+
+    box-shadow:0 30px 80px rgba(126,3,21,.45);
+
+}
+
+.stars{
+
+    color:var(--gold);
+
+    font-size:1.3rem;
+
+    letter-spacing:4px;
+
+    margin-bottom:25px;
+
+}
+
+.review-card p{
+
+    color:rgba(249,246,240,.82);
+
+    line-height:2;
+
+    font-size:1rem;
+
+    margin-bottom:30px;
+
+}
+
+.review-card h3{
+
+    font-family:'Sukajan Brush Demo',cursive;
+
+    font-size:1.8rem;
+
+    color:var(--gold);
+
+    font-weight:normal;
+
+}/*================ LOCATION ================*/
+
+.location{
+
+    padding:150px 8%;
+
+    background:#000;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+.location-subtitle{
+
+    color:var(--gold);
+
+    letter-spacing:6px;
+
+    font-size:.85rem;
+
+}
+
+.location-content h2{
+
+    font-family:'Sukajan Brush Demo',cursive;
+
+    font-size:4rem;
+
+    margin:20px 0;
+
+    line-height:1.1;
+
+}
+
+.location-content p{
+
+    color:rgba(249,246,240,.8);
+
+    line-height:2;
+
+    margin-bottom:30px;
+
+}
+
+.location-info{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+.info-box{
+
+    background:linear-gradient(
+    145deg,
+    #180405,
+    #32080d
+    );
+
+    border:1px solid rgba(197,168,128,.15);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    transition:.4s;
+
+}
+
+.info-box:hover{
+
+    border-color:var(--gold);
+
+    transform:translateX(8px);
+
+}
+.info-box a,
+.contact-box a{
+    color: var(--washi);
+    text-decoration: none;
+    transition: .3s;
+}
+
+.info-box a:hover,
+.contact-box a:hover{
+    color: var(--gold);
+}
+
+.info-box a:active,
+.contact-box a:active{
+    color: var(--gold);
+}
+.info-box h3{
+
+    font-family:'Sukajan Brush Demo',cursive;
+
+    color:var(--gold);
+
+    font-size:1.8rem;
+
+    margin-bottom:12px;
+
+    font-weight:normal;
+
+}
+
+.info-box p{
+
+    margin:0;
+
+}
+
+.location-map{
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(197,168,128,.2);
+
+    box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+}
+
+.location-map iframe{
+
+    width:100%;
+
+    height:650px;
+
+    border:0;
+
+}
+
+@media(max-width:900px){
+
+.location{
+
+grid-template-columns:1fr;
+
+}
+
+.location-map iframe{
+
+height:450px;
+
+}
+
+}/*================ CONTACT ================*/
+
+.contact{
+
+    padding:150px 8%;
+
+    background:#000;
+
+}
+
+.contact-header{
+
+    text-align:center;
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-bottom:80px;
+
+}
+
+.contact-header span{
+
+    color:var(--gold);
+
+    letter-spacing:6px;
+
+    font-size:.85rem;
+
+}
+
+.contact-header h2{
+
+    font-family:'Sukajan Brush Demo',cursive;
+
+    font-size:4rem;
+
+    margin:20px 0;
+
+}
+
+.contact-header p{
+
+    color:rgba(249,246,240,.75);
+
+    line-height:2;
+
+}
+
+.contact-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1.2fr;
+
+    gap:50px;
+
+}
+
+.contact-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.contact-box{
+
+    background:linear-gradient(
+    145deg,
+    #180405,
+    #32080d
+    );
+
+    border:1px solid rgba(197,168,128,.15);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    transition:.4s;
+
+}
+
+.contact-box:hover{
+
+    border-color:var(--gold);
+
+    transform:translateX(10px);
+
+}
+
+.contact-box h3{
+
+    font-family:'Sukajan Brush Demo',cursive;
+
+    font-size:2rem;
+
+    color:var(--gold);
+
+    font-weight:normal;
+
+    margin-bottom:10px;
+
+}
+
+.contact-box p{
+
+    color:rgba(249,246,240,.8);
+
+    line-height:1.8;
+
+}
+
+.contact-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+.contact-form textarea{
+    resize:vertical;
+    min-height:140px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+}
+
+.contact-form input:invalid{
+    border-color:rgba(126,3,21,.6);
+}
+
+.contact-form input:valid{
+    border-color:rgba(197,168,128,.35);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+    color:rgba(249,246,240,.55);
+}
+
+.contact-form button:focus,
+.contact-form input:focus,
+.contact-form textarea:focus{
+    outline:none;
+    box-shadow:0 0 0 3px rgba(197,168,128,.25);
+}
+.info-box a,
+.contact-box a{
+    color: var(--washi);
+    text-decoration: none;
+    transition: .3s;
+}
+
+.info-box a:hover,
+.contact-box a:hover{
+    color: var(--gold);
+}
+
+.info-box a:active,
+.contact-box a:active{
+    color: var(--gold);
+}
+.contact-form input,
+.contact-form textarea{
+
+    background:#180405;
+
+    border:1px solid rgba(197,168,128,.15);
+
+    border-radius:18px;
+
+    padding:18px 20px;
+
+    color:var(--washi);
+
+    font-size:1rem;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+
+    border-color:var(--gold);
+
+}
+
+.contact-form button{
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+    135deg,
+    #C5A880,
+    #E1C79C
+    );
+
+    color:#000;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+.contact-form button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 20px 50px rgba(197,168,128,.35);
+
+}
+
+@media(max-width:900px){
+
+.contact-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+.footer{
+padding:60px 20px;
+text-align:center;
+border-top:1px solid rgba(197,168,128,.15);
+background:#000;
+}
+
+.footer h3{
+font-family:'Sukajan Brush Demo',cursive;
+font-size:2rem;
+color:var(--gold);
+margin-bottom:15px;
+}
+
+.footer p{
+color:rgba(249,246,240,.65);
+line-height:2;
+}
+.floating-reserve{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-top:15px;
+    padding:18px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        135deg,
+        #180405,
+        #32080d
+    );
+
+    border:1px solid var(--gold);
+
+    color:var(--washi);
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:1px;
+
+    transition:.35s;
+}
+
+.floating-reserve:hover{
+    background:var(--gold);
+    color:#000;
+    transform:translateY(-4px);
+    box-shadow:0 15px 40px rgba(197,168,128,.35);
+}
+
+.floating-reserve:active{
+    transform:scale(.98);
+}
+</style>
+</head>
+<body>
+
+<section id="home" class="hero">
+
+<div class="overlay"></div>
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+
+<nav aria-label="Main Navigation">
+
+    <div class="logo">MATSUKI</div>
+
+    <div class="hamburger" id="hamburger" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="nav-links" id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#location">Location</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+</nav>
+
+<div class="content">
+
+<span class="subtitle">
+伝統 • 匠 • おもてなし
+</span>
+
+<h1>
+Matsuki
+</h1>
+
+<p class="hero-tagline">
+Tradition Honored. Artistry Served.
+</p>
+
+<p class="description">
+Experience true Japanese culinary craftsmanship in Addis Ababa.
+Prepared with premium ingredients, traditional techniques,
+and the spirit of Omotenashi hospitality.
+</p>
+
+<div class="buttons">
+
+<a href="#contact" class="btn-primary">
+Reserve a Table
+</a>
+
+<a href="#menu" class="btn-secondary">
+Explore menu
+</a>
+
+</div>
+
+</div>
+
+<div class="scroll">
+SCROLL
+</div>
+
+</section>
+<!-- ================= MENU SECTION ================= -->
+
+<section id="menu" class="menu-section">
+
+    <div class="menu-header">
+
+        <span class="menu-subtitle">
+            OUR SIGNATURE SELECTION
+        </span>
+
+        <h2>
+            Discover the Art<br>
+            of Japanese Cuisine
+        </h2>
+
+        <p>
+            Every dish at Matsuki is thoughtfully crafted using premium
+            ingredients, traditional Japanese techniques, and contemporary
+            presentation to create an unforgettable dining experience.
+        </p>
+
+    </div>
+<div class="menu-grid">
+
+    <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h3>Salmon Tartar</h3>
+
+            <p>
+                Fresh Atlantic salmon with avocado,
+                citrus and delicate Japanese seasoning.
+            </p>
+        </div>
+    </div>
+
+    <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h3>Wagyu Burger</h3>
+
+            <p>
+                Japanese Wagyu served on a soft brioche
+                bun with premium seasonal ingredients.
+            </p>
+        </div>
+    </div>
+
+    <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h3>Otoro Tuna</h3>
+
+            <p>
+                Luxurious bluefin tuna belly prepared
+                with traditional Japanese precision.
+            </p>
+        </div>
+    </div>
+
+    <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h3>Tomahawk Steak</h3>
+
+            <p>
+                A premium tomahawk grilled to perfection,
+                rich in flavor and beautifully presented.
+            </p>
+        </div>
+    </div>
+
+    <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h3>Tokyo Silk Pasta</h3>
+
+            <p>
+                Handmade silky pasta blended with refined
+                Japanese flavors and creamy textures.
+            </p>
+        </div>
+    </div>
+
+    <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h3>Taco Sushi</h3>
+
+            <p>
+                A modern fusion of crispy taco shells
+                filled with fresh sushi ingredients.
+            </p>
+        </div>
+    </div>
+
+</div>
+</div>
+</section>
+<!--================ ABOUT ================-->
+
+<section id="about" class="about">
+
+    <div class="about-image">
+
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80" alt="Japanese Chef">
+
+    </div>
+
+    <div class="about-content">
+
+        <span class="about-subtitle">
+            OUR STORY
+        </span>
+
+        <h2>
+            Where Tradition<br>
+            Meets Perfection
+        </h2>
+
+        <p>
+            Matsuki was founded with a single vision—to bring the soul of
+            authentic Japanese cuisine to Addis Ababa. Every dish reflects
+            generations of culinary artistry, crafted with carefully selected
+            ingredients and unwavering attention to detail.
+        </p>
+
+        <p>
+            Inspired by the philosophy of <strong>Omotenashi</strong>,
+            our hospitality goes beyond service. Every guest is welcomed
+            with warmth, every ingredient is treated with respect,
+            and every meal becomes an unforgettable experience.
+        </p>
+
+        <a href="#contact" class="about-btn">
+            Reserve Your Experience
+        </a>
+
+    </div>
+
+</section>
+<!--================ REVIEWS ================-->
+
+<section id="reviews" class="reviews">
+
+    <div class="review-header">
+
+        <span>GUEST EXPERIENCES</span>
+
+        <h2>What Our Guests Say</h2>
+
+        <p>
+            Every visit to Matsuki is crafted to create unforgettable
+            moments through authentic Japanese cuisine and exceptional hospitality.
+        </p>
+
+    </div>
+
+    <div class="review-grid">
+
+        <div class="review-card">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                "The freshest sushi I've ever had in Addis Ababa.
+                Every dish was beautifully presented and full of authentic flavor."
+            </p>
+
+
+        </div>
+
+        <div class="review-card">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                "An elegant atmosphere, outstanding service, and an unforgettable
+                dining experience. Matsuki truly captures Japanese hospitality."
+            </p>
+
+        </div>
+
+        <div class="review-card">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                "From the Wagyu Burger to the Otoro Tuna,
+                every bite reflected incredible attention to detail."
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!--================ LOCATION ================-->
+
+<section id="location" class="location">
+
+    <div class="location-content">
+
+        <span class="location-subtitle">
+            VISIT MATSUKI
+        </span>
+
+        <h2>
+            Experience Authentic<br>
+            Japanese Dining
+        </h2>
+
+        <p>
+            Located in the heart of Addis Ababa, Matsuki offers an intimate
+            dining experience where authentic Japanese cuisine meets
+            exceptional hospitality.
+        </p>
+
+        <div class="location-info">
+
+            <div class="info-box">
+                <h3>Address</h3>
+                <p>Gabon Street<br>Addis Ababa, Ethiopia</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Opening Hours</h3>
+                <p>
+                    Monday – Sunday<br>
+                    12:00 PM – 11:00 PM
+                </p>
+            </div>
+
+           <div class="contact-box">
+
+    <h3>Phone</h3>
+
+    <p>
+        <a href="tel:+251901171819">+251 901 171819</a>
+    </p>
+
+    <p>
+        <a href="tel:+251901111213">+251 901 111213</a>
+    </p>
+
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="location-map">
+
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.7836539179834!2d38.7669652!3d8.9920451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85005971dc67%3A0x23d90b34df3eb4aa!2sMatsuki!5e0!3m2!1sen!2set!4v1782496775678!5m2!1sen!2set"
+        loading="lazy"
+        allowfullscreen=""
+        referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+
+    </div>
+
+</section>
+<!--================ CONTACT ================-->
+
+<section id="contact" class="contact">
+
+    <div class="contact-header">
+
+        <span>CONTACT US</span>
+
+        <h2>Reserve Your Table</h2>
+
+        <p>
+            Whether you're planning a romantic dinner, a business meeting,
+            or a special celebration, our team is ready to welcome you.
+        </p>
+
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <div class="contact-box">
+
+    <h3>Phone</h3>
+
+    <p>
+        <a href="tel:+251901171819">+251 901 171819</a>
+    </p>
+
+    <p>
+        <a href="tel:+251901111213">+251 901 111213</a>
+    </p>
+
+</div>
+
+            <div class="contact-box">
+
+    <h3>Instagram</h3>
+
+    <p>
+        <a href="https://www.instagram.com/matsuki_addis/" target="_blank">
+            matsuki_addis
+        </a>
+    </p>
+
+</div>
+
+            <div class="contact-box">
+
+                <h3>Opening Hours</h3>
+
+                <p>
+                    Monday – Sunday<br>
+                    12:00 PM – 11:00 PM
+                </p>
+
+            </div>
+
+        </div>
+
+     <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+
+    <!-- Replace YOUR_WEB3FORMS_ACCESS_KEY with your real access key -->
+    <input type="hidden" name="access_key" value="">
+
+    <input type="hidden" name="subject" value="New Matsuki Reservation">
+
+    <input type="hidden" name="from_name" value="Matsuki Website">
+
+    <input
+        type="text"
+        name="Full Name"
+        placeholder="Full Name"
+        required
+        minlength="2"
+        autocomplete="name">
+
+    <input
+        type="tel"
+        name="Phone Number"
+        placeholder="Phone Number"
+        required
+        autocomplete="tel">
+
+    <input
+        type="email"
+        name="Email"
+        placeholder="Email Address"
+        required
+        autocomplete="email">
+
+    <input
+        type="number"
+        name="Number of Guests"
+        placeholder="Number of Guests"
+        min="1"
+        max="20"
+        required>
+
+    <input
+        type="date"
+        name="Reservation Date"
+        required>
+
+    <input
+        type="time"
+        name="Reservation Time"
+        required>
+
+    <textarea
+        name="Special Requests"
+        rows="5"
+        placeholder="Special Requests (Optional)"></textarea>
+
+    <button type="submit" aria-label="Reserve Table">
+        Reserve Table
+    </button>
+<a href="tel:+251901171819"
+   class="floating-reserve"
+   aria-label="Call to Reserve a Table">
+    Reserve using Call
+</a>
+</form>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    <h3>MATSUKI</h3>
+
+    <p>
+        Authentic Japanese Cuisine • Addis Ababa • +251901171819 • matsuki_addis
+    </p>
+
+    <p>
+        © 2026 Matsuki. All Rights Reserved.
+    </p>
+</footer>
+<script>
+
+const hamburger=document.getElementById("hamburger");
+const navMenu=document.getElementById("navMenu");
+
+hamburger.onclick=()=>{
+
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+
+};
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+    link.onclick=()=>{
+
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+
+    }
+
+});
+
+</script>
+<script>
+const reserveBtn = document.querySelector(".floating-reserve");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        reserveBtn.style.opacity = "1";
+        reserveBtn.style.pointerEvents = "auto";
+    } else {
+        reserveBtn.style.opacity = "0";
+        reserveBtn.style.pointerEvents = "none";
+    }
+});
+</script>
+</body>
+</html>
