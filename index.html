@@ -41,20 +41,20 @@ overflow-x:hidden;
 
 /* Animated Background */
 
-.hero{
+.hero{  
 height:100vh;
 position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
+overflow-x:hidden;
+
 background:
-linear-gradient(
-135deg,
-#000000,
-#120406,
-#000000
-);
+        linear-gradient(to top,
+        rgba(0,0,0,.7),
+        rgba(0,0,0,.15)),
+        url("background.png");
 }
 
 .hero::before{
@@ -108,17 +108,24 @@ rgba(0,0,0,.75)
 );
 backdrop-filter:blur(3px);
 }
-
+.logo{
+    font-family:'Yuji Syuku', cursive;
+    font-size:2rem;
+    letter-spacing:4px;
+    color:var(--washi);
+}
 /* Navigation */
 
 nav{
 position:fixed;
-top:20px;
-left:50%;
-transform:translateX(-50%);
-width:90%;
-max-width:1300px;
-padding:18px 40px;
+    top:20px;
+    left:15px;
+    right:15px;
+    width:auto;
+    max-width:1300px;
+    margin:auto;
+    transform:none;
+padding:16px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -134,6 +141,23 @@ border-radius:20px;
 box-shadow:
 0 10px 40px rgba(0,0,0,.35);
 transition:.35s;
+}
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+.nav-links a{
+    position:relative;
+    color:var(--washi);
+    text-decoration:none;
+    letter-spacing:2px;
+    font-size:1.2rem;
+    padding:15px;
+    width:100%;
+    text-align:center;
+    font-size:1.1rem;
 }
 /* Hamburger */
 
@@ -167,20 +191,22 @@ transition:.35s;
     transform:translateY(-9px) rotate(-45deg);
 }
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-.hamburger{
-    display:block;
-}
+    .hamburger{
+        display:block;
+    }
 
-.nav-links{
+    .nav-links{
     position:fixed;
     top:0;
     right:-100%;
-    width:260px;
+    width:280px;
+    max-width:85%;
     height:100vh;
+    padding:14px 18px;
 
-    background:rgba(15,15,15,.97);
+    background:rgba(12,12,12,.98);
     backdrop-filter:blur(20px);
 
     display:flex;
@@ -189,37 +215,14 @@ transition:.35s;
     align-items:center;
     gap:30px;
 
-    transition:.4s ease;
+    transition:right .4s ease;
+    z-index:1050;
 }
 
-.nav-links.active{
-    right:0;
+    .nav-links.active{
+        right:0;
+    }
 }
-
-.nav-links a{
-    font-size:1.1rem;
-}
-
-}
-.logo{
-font-family:'Yuji Syuku',cursive;
-font-size:2.2rem;
-letter-spacing:2px;
-color:white;
-text-shadow:0 0 15px rgba(197,168,128,.35);
-}
-
-
-.nav-links a{
-color:var(--washi);
-text-decoration:none;
-font-size:.9rem;
-letter-spacing:1px;
-transition:.35s;
-padding:10px 18px;
-border-radius:12px;
-}
-
 .nav-links a:hover{
 background:rgba(255,255,255,.08);
 color:var(--gold);
@@ -336,12 +339,13 @@ transform:translateY(-4px);
 position:absolute;
 border:1px solid rgba(197,168,128,.12);
 border-radius:50%;
+pointer-events:none;
 }
 
 .circle1{
 width:450px;
 height:450px;
-left:-150px;
+left:-180px;
 top:120px;
 animation:spin 25s linear infinite;
 }
@@ -349,7 +353,7 @@ animation:spin 25s linear infinite;
 .circle2{
 width:700px;
 height:700px;
-right:-250px;
+right:-220px;
 bottom:-200px;
 animation:spinReverse 35s linear infinite;
 }
@@ -396,9 +400,7 @@ transform:translateX(-50%) translateY(-10px);
 
 @media(max-width:768px){
 
-.nav-links{
-display:none;
-}
+
 
 h1{
 font-size:4rem;
@@ -464,8 +466,7 @@ line-height:1.8;
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
-
+   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:35px;
 
 }
@@ -560,11 +561,8 @@ line-height:1.8;
     padding:150px 8%;
 
     display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:80px;
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:60px;
     align-items:center;
 
     background:#000;
@@ -682,6 +680,27 @@ height:450px;
 text-align:center;
 
 }
+.location{
+    grid-template-columns:1fr;
+    gap:40px;
+    padding:100px 20px;
+}
+
+.location-content,
+.location-map{
+    width:100%;
+    max-width:100%;
+}
+
+.location-map iframe{
+    width:100%;
+    height:450px;
+}
+
+.info-box,
+.contact-box{
+    width:100%;
+}
 
 }/*================ REVIEWS ================*/
 
@@ -696,13 +715,12 @@ text-align:center;
 .review-header{
 
     text-align:center;
-
+    
+    width:100%;
+   
     max-width:750px;
-
-    margin:auto;
-
-    margin-bottom:80px;
-
+    
+    margin:0 auto 80px;
 }
 
 .review-header span{
@@ -734,21 +752,19 @@ text-align:center;
 }
 
 .review-grid{
-
     display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-
-    gap:35px;
-
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+    gap:25px;
+    max-width:1300px;
+    margin:0 auto;
 }
-
 .review-card{
 
     background:linear-gradient(
     145deg,
     #180405,
     #32080d
+    
     );
 
     border-radius:28px;
@@ -760,7 +776,10 @@ text-align:center;
     transition:.45s;
 
     box-shadow:0 20px 60px rgba(0,0,0,.4);
-
+    
+    width:100%;
+    max-width:100%;
+    padding:30px;
 }
 
 .review-card:hover{
@@ -816,11 +835,8 @@ text-align:center;
     background:#000;
 
     display:grid;
-
-    grid-template-columns:1fr 1fr;
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:60px;
-
     align-items:center;
 
 }
@@ -1259,6 +1275,53 @@ line-height:2;
 .floating-reserve:active{
     transform:scale(.98);
 }
+html,
+body{
+    overflow-x:hidden;
+    width:100%;
+}
+
+section{
+    overflow:hidden;
+}
+.reviews,
+.location,
+.review-grid,
+.location-info,
+.info-box,
+.contact-box,
+.review-card{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+}
+@media (max-width:768px){
+
+    h2{
+        font-size:2.6rem !important;
+        line-height:1.2;
+        word-break:break-word;
+    }
+
+    .about-content h2,
+    .review-header h2,
+    .location-content h2,
+    .contact-header h2,
+    .menu-header h2{
+        font-size:2.6rem !important;
+    }
+
+    .review-header,
+    .location-content,
+    .about-content,
+    .contact-header,
+    .menu-header{
+        width:100%;
+        padding:0;
+        margin:0 auto;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -1441,7 +1504,7 @@ SCROLL
 
     <div class="about-image">
 
-        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80" alt="Japanese Chef">
+        <img src= "matsuki.jpg">
 
     </div>
 
@@ -1662,7 +1725,7 @@ SCROLL
      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
 
     <!-- Replace YOUR_WEB3FORMS_ACCESS_KEY with your real access key -->
-    <input type="hidden" name="access_key" value="">
+    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
 
     <input type="hidden" name="subject" value="New Matsuki Reservation">
 
@@ -1740,25 +1803,23 @@ SCROLL
 </footer>
 <script>
 
-const hamburger=document.getElementById("hamburger");
-const navMenu=document.getElementById("navMenu");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
 
-hamburger.onclick=()=>{
-
+hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
 
-};
+    document.body.style.overflow =
+        navMenu.classList.contains("active") ? "hidden" : "";
+});
 
-document.querySelectorAll(".nav-links a").forEach(link=>{
-
-    link.onclick=()=>{
-
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
-
-    }
-
+        document.body.style.overflow = "";
+    });
 });
 
 </script>
